@@ -13,6 +13,7 @@ struct Course: Identifiable {
     let title: String
     let duration: String
     let days: String
+    let shift: String
     let workload: String
     let teacher: String
 }
