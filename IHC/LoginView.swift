@@ -23,6 +23,7 @@ struct LoginView: View {
                     .font(.largeTitle)
                     .bold()
                     .padding(.bottom, 20)
+                    .foregroundStyle(AppColor.textoPadrao)
 
                 Image("IHC1")
                     .resizable()
@@ -34,35 +35,35 @@ struct LoginView: View {
                     Image(systemName: "envelope")
                         .padding(.vertical)
                         .padding(.leading, 5)
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(AppColor.textoPadrao)
 
-                    TextField("", text: $email, prompt: Text("Email").foregroundStyle(.blue))
+                    TextField("", text: $email, prompt: Text("Email").foregroundStyle(AppColor.textoPadrao))
                         .textFieldStyle(.plain)
                         .autocapitalization(.none)
                         .keyboardType(.emailAddress)
                         .padding(.horizontal)
                 }
                 .cornerRadius(10)
-                .foregroundStyle(.blue)
+                .foregroundStyle(AppColor.textoPadrao)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(.blue), lineWidth: 2)
+                        .stroke(AppColor.azulPrimario, lineWidth: 2)
                 )
 
                 HStack {
                     Image(systemName: "lock")
                         .padding(.vertical)
                         .padding(.leading, 5)
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(AppColor.textoPadrao)
 
                     if isSecure {
-                        SecureField("", text: $password, prompt: Text("Senha").foregroundStyle(.blue))
+                        SecureField("", text: $password, prompt: Text("Senha").foregroundStyle(AppColor.textoPadrao))
                             .textFieldStyle(.plain)
                             .autocapitalization(.none)
                             .padding(.horizontal)
 
                     } else {
-                        TextField("", text: $password, prompt: Text("Senha").foregroundStyle(.blue))
+                        TextField("", text: $password, prompt: Text("Senha").foregroundStyle(AppColor.textoPadrao))
                             .textFieldStyle(.plain)
                             .autocapitalization(.none)
                             .padding(.horizontal)
@@ -74,14 +75,14 @@ struct LoginView: View {
                         Image(systemName: isSecure ? "eye.slash.fill" : "eye.fill")
                             .padding(.vertical)
                             .padding(.horizontal)
-                            .foregroundStyle(.blue)
+                            .foregroundStyle(AppColor.textoPadrao)
                     }
                 }
                 .cornerRadius(10)
-                .foregroundStyle(.blue)
+                .foregroundStyle(AppColor.textoPadrao)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(.blue), lineWidth: 2)
+                        .stroke(AppColor.azulPrimario, lineWidth: 2)
                 )
 
                 Spacer()
@@ -92,8 +93,8 @@ struct LoginView: View {
                     Text("Entrar")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.green)
-                        .foregroundColor(.white)
+                        .background(AppColor.verdeSucesso)
+                        .foregroundStyle(AppColor.azulSuave)
                         .cornerRadius(10)
                 }
 
@@ -111,14 +112,15 @@ struct LoginView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
+                    .background(AppColor.azulPrimario)
+                    .foregroundStyle(AppColor.azulSuave)
                     .cornerRadius(10)
                 }
                 .sheet(isPresented: $showGovBrSheet) {
                     VStack(spacing: 20) {
                         Text("Digite o código de 6 números")
                             .font(.headline)
+                            .foregroundStyle(AppColor.textoPadrao)
                         HStack(spacing: 10) {
                             ForEach(0..<6, id: \ .self) { index in
                                 TextField("", text: $verificationCode[index])
@@ -139,8 +141,8 @@ struct LoginView: View {
                             path.append("dashboard")
                         }
                         .padding()
-                        .background(Color.green)
-                        .foregroundColor(.white)
+                        .background(AppColor.verdeSucesso)
+                        .foregroundColor(AppColor.azulSuave)
                         .cornerRadius(10)
                     }
                     .padding()
@@ -149,6 +151,7 @@ struct LoginView: View {
                 Spacer()
             }
             .padding()
+            .background(AppColor.fundoGeral)
             .navigationDestination(for: String.self) { value in
                 if value == "dashboard" {
                     DashboardView()
